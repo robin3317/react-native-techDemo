@@ -1,33 +1,15 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 
-const user = [
-  {
-    name: 'Anders Anderson',
-    height: '178cm - 85kg'
-  },
-  {
-    name: 'Rock Johnson',
-    height: '158cm - 75kg'
-  },
-  {
-    name: 'Andrew Mead',
-    height: '162cm - 65kg'
-  },
-  {
-    name: 'Maximilliam Max',
-    height: '175cm - 78kg'
-  }
-];
-
-const Card = () => {
+const Card = props => {
   const { cardStyle, imageStyle, subTitleStyle, nameStyle } = styles;
+  console.log(props.user);
   return (
     <View style={cardStyle}>
       <Image style={imageStyle} source={require('../asset/user.png')} />
       <View>
-        <Text style={nameStyle}>{user[0].name}</Text>
-        <Text style={subTitleStyle}>{user[0].height}</Text>
+        <Text style={nameStyle}>{props.user.name}</Text>
+        <Text style={subTitleStyle}>{props.user.distance}</Text>
       </View>
     </View>
   );

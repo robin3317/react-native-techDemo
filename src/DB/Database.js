@@ -22,31 +22,19 @@ export const COLOR_DB = [
 export const PARTICIPANTS_DB = [
   {
     name: 'Anders Andersson',
-    distance: {
-      low: '178cm',
-      high: '85kg'
-    }
+    distance: '178cm 85kg'
   },
   {
     name: 'Jane Andersson',
-    distance: {
-      low: '188cm',
-      high: '80kg'
-    }
+    distance: '188cm 80kg'
   },
   {
     name: 'Jimmy Andersson',
-    distance: {
-      low: '172cm',
-      high: '90kg'
-    }
+    distance: '172cm 90kg'
   },
   {
     name: 'Sheldon Kooper',
-    distance: {
-      low: '173cm',
-      high: '98kg'
-    }
+    distance: '173cm 98kg'
   }
 ];
 

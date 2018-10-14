@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import ScreenOne from './src/container/ScreenOne';
+import Routes from './src/router/routes';
 
-const App = () => <ScreenOne />;
+const App = () => (
+  <View style={{ flex: 1 }}>
+    <Routes />
+  </View>
+);
 
 export default App;
