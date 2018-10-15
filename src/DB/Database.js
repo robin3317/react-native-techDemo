@@ -38,7 +38,7 @@ export const PARTICIPANTS_DB = [
   }
 ];
 
-export const COLUMN_DB = ['name', 'age', 'country'];
+export const COLUMN_DB = ['Name', 'Age', 'Country'];
 
 export const PEOPLE_DB = [
   { name: 'Maria Anders', age: 30, country: 'Germany' },

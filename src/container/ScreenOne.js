@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  FlatList,
+  TouchableOpacity
+} from 'react-native';
 import Button from '../components/Button';
 import Button2 from '../components/Button2';
 import Card from './../components/Card';
@@ -31,23 +38,52 @@ const styles = {
   cardStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 10,
-    marginLeft: 20
+    marginLeft: 28
   },
-  partiTextStyle: { fontSize: 16, fontWeight: 'bold' }
+  partiTextStyle: { fontSize: 16, fontWeight: 'bold' },
+  hrStyle: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    width: 120,
+    marginTop: 8,
+    marginBottom: 2,
+    marginLeft: 110
+  }
 };
 
 export default class ScreenOne extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    title: 'Screen1',
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Screen 1',
     headerRight: (
-      <Button
-        title="Menu"
+      <TouchableOpacity
         onPress={() => {
           navigation.navigate('Screen2');
         }}
-      />
-    )
+        style={{
+          height: 35,
+          width: 35,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'rgba(250, 250, 250, 0.7)',
+          borderRadius: 50,
+          margin: 5,
+          shadowColor: 'black',
+          shadowOpacity: 0.5,
+          shadowOffset: {
+            width: 2,
+            height: 2
+          }
+        }}
+      >
+        <Text style={{ fontSize: 25, color: '#2980b9' }}>2</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      backgroundColor: '#16a085'
+    },
+    headerTitleStyle: {
+      color: 'white'
+    }
   });
   state = { clickedNumber: 1, participantsList: [] };
   addUserHandler = () => {
@@ -66,7 +102,7 @@ export default class ScreenOne extends Component {
       }
     );
   };
-  renderCard = item => <Card user={item} />;
+  //renderCard = item => <Card user={item} />;
   render() {
     console.log(this.props.navigation);
     const {
@@ -77,7 +113,8 @@ export default class ScreenOne extends Component {
       commonStyle,
       partiStyle,
       partiTextStyle,
-      cardStyle
+      cardStyle,
+      hrStyle
     } = styles;
 
     return (
@@ -88,6 +125,7 @@ export default class ScreenOne extends Component {
             <Text style={headingTextStyle}>STANDING 30 METERS</Text>
             <Button onPress={this.addUserHandler}>+ADD</Button>
           </View>
+          <View style={hrStyle} />
           <View style={commonStyle}>
             <Text style={partiTextStyle}>Participants</Text>
             <Text style={partiStyle}>{this.state.participantsList.length}</Text>

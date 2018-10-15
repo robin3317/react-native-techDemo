@@ -1,39 +1,65 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import Table from './../Table/Table';
 
-export default class ScreenOne extends Component {
+const styles = {
+  bodyStyle: { backgroundColor: '#343137', flex: 1 },
+  headerStyle: { backgroundColor: '#F9C648', height: 150 },
+  headingTextStyle: { color: '#fff', fontSize: 24, fontWeight: '500' },
+  headingRowStyle: {
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  hrStyle: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    width: 80,
+    marginTop: 15,
+    marginBottom: 2,
+    marginLeft: 142
+  },
+  fontStyle: {
+    fontWeight: 'bold'
+  }
+};
+
+export default class ScreenTwo extends Component {
+  static navigationOptions = () => ({
+    title: 'Screen 2',
+    headerStyle: { backgroundColor: '#16a085' },
+    headerTitleStyle: { color: 'white' }
+  });
+
   render() {
-    const styles = {
-      bodyStyle: { backgroundColor: '#343137', flex: 1 },
-      headerStyle: { backgroundColor: '#F9C648', height: 430 },
-      headingTextStyle: { color: '#fff', fontSize: 23, fontWeight: '500' },
-      headingRowStyle: {
-        marginTop: 15,
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-      },
-      commonStyle: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10
-      },
-      partiStyle: {
-        marginLeft: 15,
-        backgroundColor: '#53ADA2',
-        borderRadius: 50,
-        height: 20,
-        width: 20,
-        fontSize: 14,
-        paddingLeft: 5
-      },
-      partiTextStyle: { fontSize: 16, fontWeight: 'bold' }
-    };
-    const { bodyStyle, headerStyle } = styles;
+    const {
+      bodyStyle,
+      headerStyle,
+      headingTextStyle,
+      headingRowStyle,
+      hrStyle,
+      fontStyle
+    } = styles;
     return (
       <View style={bodyStyle}>
         <View style={headerStyle}>
-          <Text>Screen 2</Text>
+          <View style={headingRowStyle}>
+            <Text style={headingTextStyle}>ODAIN ROSE</Text>
+          </View>
+          <View style={hrStyle} />
+          <View style={headingRowStyle}>
+            <Text style={fontStyle}>30m sprint</Text>
+            <Text style={fontStyle}>
+              <Image source={require('../asset/calendar.png')} />
+              11-12-2017
+            </Text>
+            <Text style={fontStyle}>
+              <Image source={require('../asset/timer.png')} />
+              09:30
+            </Text>
+          </View>
         </View>
+        <Table />
       </View>
     );
   }
