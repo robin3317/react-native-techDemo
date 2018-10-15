@@ -2,14 +2,24 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 
 const Card = props => {
-  const { cardStyle, imageStyle, subTitleStyle, nameStyle } = styles;
+  const {
+    cardStyle,
+    imageStyle,
+    subTitleStyle,
+    nameStyle,
+    editStyle,
+    nameContainerStyle
+  } = styles;
   console.log(props.user);
   return (
     <View style={cardStyle}>
       <Image style={imageStyle} source={require('../asset/user.png')} />
-      <View>
+      <View style={nameContainerStyle}>
         <Text style={nameStyle}>{props.user.name}</Text>
         <Text style={subTitleStyle}>{props.user.distance}</Text>
+      </View>
+      <View style={editStyle}>
+        <Image source={require('../asset/edit.png')} />
       </View>
     </View>
   );
@@ -34,6 +44,13 @@ const styles = {
   },
   nameStyle: {
     fontWeight: 'bold'
+  },
+  editStyle: {
+    justifyContent: 'flex-end',
+    marginBottom: 10
+  },
+  nameContainerStyle: {
+    width: 180
   }
 };
 
