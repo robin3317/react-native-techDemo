@@ -11,12 +11,15 @@ export const BUTTON_DB = [
 ];
 
 export const COLOR_DB = [
-  '#00ffff',
   '#3fff00',
   '#ff7600',
   '#ff00a5',
-  '#0043ff',
-  '#91ff00'
+  '#91ff00',
+  '#e4b499',
+  '#db79a6',
+  '#3fba29',
+  '#f16a22',
+  '#b493c3'
 ];
 
 export const PARTICIPANTS_DB = [

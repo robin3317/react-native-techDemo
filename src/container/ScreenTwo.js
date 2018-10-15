@@ -1,6 +1,9 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Table from './../Table/Table';
+import { BUTTON_DB } from '../DB/Database';
+import { getRandomColor } from '../Util/Util';
 
 const styles = {
   bodyStyle: { backgroundColor: '#343137', flex: 1 },
@@ -21,6 +24,22 @@ const styles = {
   },
   fontStyle: {
     fontWeight: 'bold'
+  },
+  addStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 15
+  },
+  tableStyle: {
+    marginLeft: 10,
+    marginRight: 10
+  },
+  plusStyle: {
+    backgroundColor: '#FFA500',
+    padding: 10,
+    borderRadius: 5,
+    color: '#fff'
   }
 };
 
@@ -31,6 +50,47 @@ export default class ScreenTwo extends Component {
     headerTitleStyle: { color: 'white' }
   });
 
+  //-----------------------
+  state = { buttonList: [], clickedNumber: 1, colorArray: [] };
+
+  handleClick = () => {
+    console.log('clicked');
+    const db = BUTTON_DB;
+    const items = db.slice(0, this.state.clickedNumber);
+    let randomColor = getRandomColor();
+    if (_.includes(this.state.colorArray, randomColor)) {
+      randomColor = getRandomColor();
+    }
+    console.log(randomColor);
+    this.setState({
+      buttonList: [...items],
+      clickedNumber: this.state.clickedNumber + 1,
+      colorArray: this.state.colorArray.concat(randomColor)
+    });
+    console.log(this.state.buttonList);
+  };
+
+  renderColoredButton = (button, key) => (
+    <TouchableOpacity
+      color="inherit"
+      key={key}
+      style={{ borderColor: this.state.colorArray[key] }}
+    >
+      <Text
+        style={{
+          color: this.state.colorArray[key],
+          borderWidth: 1,
+          borderRadius: 4,
+          borderColor: this.state.colorArray[key],
+          padding: 7,
+          marginRight: 7
+        }}
+      >
+        {button.name}
+      </Text>
+    </TouchableOpacity>
+  );
+
   render() {
     const {
       bodyStyle,
@@ -38,10 +98,13 @@ export default class ScreenTwo extends Component {
       headingTextStyle,
       headingRowStyle,
       hrStyle,
-      fontStyle
+      fontStyle,
+      addStyle,
+      tableStyle,
+      plusStyle
     } = styles;
     return (
-      <View style={bodyStyle}>
+      <ScrollView style={bodyStyle}>
         <View style={headerStyle}>
           <View style={headingRowStyle}>
             <Text style={headingTextStyle}>ODAIN ROSE</Text>
@@ -59,8 +122,19 @@ export default class ScreenTwo extends Component {
             </Text>
           </View>
         </View>
-        <Table />
-      </View>
+        <View style={addStyle}>
+          {this.state.buttonList.map((button, index) =>
+            this.renderColoredButton(button, index)
+          )}
+
+          <TouchableOpacity onPress={this.handleClick}>
+            <Text style={plusStyle}>+</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={tableStyle}>
+          <Table />
+        </View>
+      </ScrollView>
     );
   }
 }

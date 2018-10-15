@@ -69,23 +69,17 @@ export default class ScreenOne extends Component {
           margin: 5,
           shadowColor: 'black',
           shadowOpacity: 0.5,
-          shadowOffset: {
-            width: 2,
-            height: 2
-          }
+          shadowOffset: { width: 2, height: 2 }
         }}
       >
         <Text style={{ fontSize: 25, color: '#2980b9' }}>2</Text>
       </TouchableOpacity>
     ),
-    headerStyle: {
-      backgroundColor: '#16a085'
-    },
-    headerTitleStyle: {
-      color: 'white'
-    }
+    headerStyle: { backgroundColor: '#16a085' },
+    headerTitleStyle: { color: 'white' }
   });
   state = { clickedNumber: 1, participantsList: [] };
+
   addUserHandler = () => {
     const db = PARTICIPANTS_DB;
     const items = db.slice(0, this.state.clickedNumber);
@@ -134,6 +128,7 @@ export default class ScreenOne extends Component {
             <FlatList
               data={this.state.participantsList}
               renderItem={({ item }) => <Card user={item} />}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
           <View style={commonStyle}>
